@@ -10,7 +10,7 @@ Twitter: https://twitter.com/Jangari_nTK
 Instant Clone with pyVmomi
 
 Example:
-$ python3 instant_clone.py --host vcsa01a.corp.local --user administrator@vsphere.local \
+$ python3 instant_clone.py --host vcsa01.corp.local --user administrator@vsphere.local \
     --password VMware1! --vm-name "New_VM" --parent-vm "Parent_VM" --resource-pool "Destination-Pool"
 
 Note: Sample code For testing purposes only
@@ -34,7 +34,7 @@ def get_args():
                         type=int,
                         default=443,
                         action='store',
-                        help='Port to connect on')
+                        help='vCenter Server TCP port')
 
     parser.add_argument('-u', '--user',
                         required=True,
@@ -49,34 +49,32 @@ def get_args():
     parser.add_argument('-v', '--vm-name',
                         required=True,
                         action='store',
-                        help='Name of the VM you wish to make')
+                        help='Name of the new VM')
 
     parser.add_argument('--parent-vm',
                         required=True,
                         action='store',
-                        help='Name of the parent VM \
-                            you are cloning from')
+                        help='Name of the parent VM')
 
     parser.add_argument('--datacenter-name',
                         required=False,
                         action='store',
                         default=None,
-                        help='Name of the Datacenter you\
-                            wish to use. If omitted, the first\
-                            datacenter will be used.')
+                        help='Name of the destination datacenter. \
+                            If omitted, the first datacenter will be used.')
 
     parser.add_argument('--vm-folder',
                         required=False,
                         action='store',
                         default=None,
-                        help='Name of the VMFolder you wish\
-                            the VM to be dumped in. If left blank\
-                            The datacenter VM folder will be used')
+                        help='Name of the destination VM Folder. \
+                            If omitted, the datacenter VM folder \
+                            will be used')
 
     parser.add_argument('--resource-pool',
                         required=True,
                         action='store',
-                        help='Resource Pool to use.')
+                        help='Name of the destionation resource pool.')
 
     args = parser.parse_args()
 
