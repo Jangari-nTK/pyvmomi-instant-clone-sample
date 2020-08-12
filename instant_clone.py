@@ -25,9 +25,10 @@ GOSC_OPTIONS=$(cat << EOS
 }
 EOS
 )
+
 python3 instant_clone.py --host vcsa01.corp.local --user administrator@vsphere.local \
-    --password VMware1! --vm-name "New_VM" --parent-vm "Parent_VM" --resource-pool "Destination-Pool" \
-    --guestinfo-json-string "$GOSC_OPTIONS"
+    --password VMware1! --vm-name "New_VM" --parent-vm "Parent_VM" --datacenter-name "Datacenter" \
+    --resource-pool "Destination-Pool" --guestinfo-json-string "$GOSC_OPTIONS"
 """
 
 from pyVmomi import vim
